@@ -197,10 +197,10 @@ def create_argparser():
 
 
 if __name__ == "__main__":
-    dataset = 'cat2dog' #cat2dog/wild2dog/male2female/multi_afhq(mutli-domain)
+    #dataset = 'cat2dog' #cat2dog/wild2dog/male2female/multi_afhq(mutli-domain)
     #defalut args
     args = create_argparser().parse_args()
-    args.dataset = dataset
+    dataset = args.dataset
     dir = os.path.join('runs', args.dataset, 'dse')
     now = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     logger.configure(dir=dir, log_suffix=now)
@@ -220,5 +220,11 @@ if __name__ == "__main__":
         args.data_path = ['data/afhq/train/cat','data/afhq/train/wild', 'data/afhq/train/dog']
         args.num_class = 3
         args.iterations = 10000
+    
+    args.data_path = ['data/CUTdataset/trainA','data/CUTdataset/trainB']
+
+    print(args.data_path)
+    print(args.num_class)
+
     main(args)
 
